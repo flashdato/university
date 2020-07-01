@@ -9,17 +9,16 @@ import java.util.List;
 import java.util.Random;
 
 public class StudentService {
-    private  String[] names = {"Soso","Joseph","Vaxo","Anz2"};
-    private  String[] surnames = {"Kakabadze","Jugashvili","Vaxtangishvili","Labadze"};
-    public List<Student> getStudents(int amount)
-    {
+    private String[] names = {"Soso", "Joseph", "Vaxo", "Anz2"};
+    private String[] surnames = {"Kakabadze", "Jugashvili", "Vaxtangishvili", "Labadze"};
+
+    public List<Student> getStudents(int amount) {
         Random random = new Random();
         List<Student> list = new ArrayList<>();
-        for (int i = 0; i < amount; i++)
-        {
+        for (int i = 0; i < amount; i++) {
             Student student = new Student();
-            student.setName(names[random.nextInt(names.length-1)]);
-            student.setSurname(surnames[random.nextInt(surnames.length-1)]);
+            student.setName(names[random.nextInt(names.length)]);
+            student.setSurname(surnames[random.nextInt(surnames.length)]);
             list.add(student);
         }
         return list;

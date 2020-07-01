@@ -32,6 +32,10 @@ public class Subject {
         this.name = name;
     }
 
+    public Type getType() {
+        return type;
+    }
+
     @Override
     public String toString() {
         return "Subject{" +
