@@ -13,4 +13,8 @@ public class Student extends Person {
     public Map<Subject, Integer> getPoints() {
         return points;
     }
+    public int getPointsBySubject(Subject subject)
+    {
+        return points.get(subject);
+    }
 }

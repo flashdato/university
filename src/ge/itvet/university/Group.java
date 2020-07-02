@@ -48,4 +48,11 @@ public class Group {
     public boolean removeStudent(Student student) {
         return students.remove(student);
     }
+
+    @Override
+    public String toString() {
+        return "Group{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }
