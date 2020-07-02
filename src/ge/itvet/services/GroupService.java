@@ -24,4 +24,5 @@ public class GroupService {
     public List<Group> getGroups() {
         return groups;
     }
+
 }

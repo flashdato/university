@@ -1,7 +1,10 @@
 package ge.itvet;
 
 import ge.itvet.services.ExamService;
+import ge.itvet.services.GroupService;
 import ge.itvet.services.StatisticService;
+import ge.itvet.university.Group;
+import ge.itvet.university.Student;
 import ge.itvet.university.Subject;
 
 import java.util.Map;
@@ -10,8 +13,9 @@ public class Main {
     public static void main(String[] args) {
         new ExamService();
         StatisticService statisticService = new StatisticService();
-        Map<Subject.Type, Integer> typePointsMap = statisticService.sumOfPointsGroupBySubjectType();
-        System.out.println("typePointsMap = " + typePointsMap);
+        System.out.println("typePointsMap = " + statisticService.sumOfPointsGroupBySubjectType());
+        System.out.println(statisticService.sortGroupByType());
+
 
      /*
      X 1.ქულების გენერცია თითოეული გრუპის სტუდენტზე
@@ -23,7 +27,7 @@ public class Main {
      7.დავალაგოთ სტუდენტები ქულების მიხედვით(კონკრეტული საგნებში)*
      8.დავალაგოთ სტუდენტები ქულების მიხედვით(კონკრეტული ტიპის საგნებში)
       */
-        System.out.println("THE END");
+
     }
 }
 

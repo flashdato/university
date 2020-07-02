@@ -2,10 +2,9 @@ package ge.itvet.services;
 
 import ge.itvet.university.Subject;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class StatisticService {
     private static final GroupService service = new GroupService();
@@ -22,7 +21,7 @@ public class StatisticService {
                 .map((Map.Entry<Subject.Type, List<Map.Entry<Subject, Integer>>> entry) -> {
                             Optional<Integer> reduce =
                                     entry.getValue().stream()
-                                    .map( (Map.Entry<Subject, Integer> subjectPointEntry) -> subjectPointEntry.getValue())
+                                    .map(Map.Entry::getValue)
                                     .reduce(Integer::sum);
                             return Map.entry(entry.getKey(), reduce.get());
                         }
@@ -30,4 +29,16 @@ public class StatisticService {
 
         return typeIntegerMap;
     }
+    public Map<Subject.Type, Integer>  sortGroupByType() {
+        long size = service.getGroups().stream()
+                .flatMap(group -> group.getStudents().stream()).count();
+        Map<Subject.Type, Integer> typeIntegerMap = sumOfPointsGroupBySubjectType();
+       typeIntegerMap.replaceAll((s, v) -> v / (int)size);
+        return typeIntegerMap.entrySet()
+                .stream()
+                .sorted((Map.Entry.<Subject.Type, Integer>comparingByValue().reversed()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+
+    }
 }
+
